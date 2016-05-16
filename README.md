@@ -1,8 +1,6 @@
 # Generating debian packages for AIBench-based applications
 
-This project shows how to generate debian packages for [AIBench-based](http://www.aibench.org/) application.
-
-This is done by integrating the [jdeb](https://github.com/tcurdt/jdeb/blob/master/docs/maven.md) plugin into the default `pom.xml`.
+This project shows how to generate debian packages for [AIBench-based](http://www.aibench.org/) applications. This is done by integrating the [jdeb](https://github.com/tcurdt/jdeb/blob/master/docs/maven.md) plugin into the default `pom.xml`.
 
 ## Usage
 Building this project with `mvn package` will produce a debian package at `target/aibench-jdeb_1.0_all.deb`. This package can then be installed with `dpkg -i aibench-jdeb_1.0_all.deb` so that:
@@ -61,7 +59,7 @@ Maintainer: ${debian.package.maintainer}
 
 It is necessary to add this `execution` to the `maven-resources-plugin` so that new resources created in the previous step are copied (and filtered) to the project build directory:
 
-```bash
+```xml
 <!-- copy debian files -->
 <execution>
 	<id>copy-resources-debian</id>
@@ -84,7 +82,7 @@ It is necessary to add this `execution` to the `maven-resources-plugin` so that 
 ### 4 Adding `jdeb` plugin
 
 Finally, we add the following `jdeb` plugin definition to project `pom.xml`:
-```bash
+```xml
 <plugin>
 	<artifactId>jdeb</artifactId>
 	<groupId>org.vafer</groupId>
