@@ -23,6 +23,7 @@
 		<debian.package.lib.folder>/usr/local/lib/aibench-jdeb</debian.package.lib.folder>
 		<debian.package.command>/usr/local/bin/run-aibench</debian.package.command>
 		<debian.package.maintainer>hlfernandez@sing.ei.uvigo.es</debian.package.maintainer>
+		<debian.package.dependencies>default-jre | java7-runtime</debian.package.dependencies>
 	</properties>
 
 	<dependencies>

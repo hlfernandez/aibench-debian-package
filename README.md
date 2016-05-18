@@ -7,7 +7,7 @@ Building this project with `mvn package` will produce a debian package at `targe
 - Project files (i.e., `run.sh`, `conf`, `lib` and `plugins_bin`) are located at `/usr/local/lib/aibench-jdeb`.
 - A link to launch script is located at `/usr/local/bin/run-aibench`. 
 
-This way, the application can be run by running command `run-aibench` from any path.
+This way, the application can be run by running command `run-aibench` (which can be configured) from any path.
 
 ## Step-by-step guide
 
@@ -26,6 +26,7 @@ Secondly, we configure the `pom.xml` so that we:
 - Add property `debian.package.lib.folder` specifying the location of the project in target debian systems.
 - Add property `debian.package.command` specifying the location of the command in target debian systems.
 - Add property `debian.package.maintainer` specifying the project maintainer.
+- Add property `debian.package.dependencies` specifying the project dependencies (i.e., debian packages). For instance, value `default-jre | java7-runtime` are the minimum required dependencies to indicate that project needs Java 1.7 to run.
 
 ### 3 Create necessary resource files
 
@@ -53,6 +54,7 @@ Priority: low
 Architecture: all
 Description: ${description}
 Maintainer: ${debian.package.maintainer}
+Depends: ${debian.package.dependencies}
 ```
 
 #### 3.3 Copy new resources
@@ -142,3 +144,7 @@ Finally, we add the following `jdeb` plugin definition to project `pom.xml`:
 	</executions>
 </plugin>
 ```
+
+### 5 Installing and running the application
+
+The generated debian package can be installed with `dpkg -i aibench-jdeb_1.0_all.deb`. Now, the application can be run by running command `run-aibench` (configured with `debian.package.command`) from any path.
